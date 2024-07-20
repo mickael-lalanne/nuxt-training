@@ -23,27 +23,16 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { EType } from '../models/Type';
 
-export default defineComponent({
-    props: {
-        label: {
-            type: String,
-            required: true,
-        },
-    },
-    emits: {
-        typeSelected: (type: EType) => true,
-    
-    },
-    setup() {
-        const types: Ref<EType[]> = ref(Object.values(EType));
+defineProps<{
+    label: string;
+}>();
 
-        return {
-            types,
-        };
-    },
-});
+defineEmits<{
+    typeSelected: [type: EType]
+}>()
+
+const types = ref(Object.values(EType));
 </script>
